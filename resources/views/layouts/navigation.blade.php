@@ -35,7 +35,7 @@
                     @endif
                 @endauth
                 @auth
-                    @if (in_array(auth()->user()->role, ['pendaftaran', 'dokter', 'pendaftaran']))
+                    @if (in_array(auth()->user()->role, ['pendaftaran', 'dokter', 'perawat']))
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                             <x-nav-link :href="route('pasien.informasi')" :active="request()->routeIs('pasien.informasi')">
                                 {{ __('Informasi Pemeriksaan') }}
