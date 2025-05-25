@@ -14,11 +14,12 @@ class CreateRegisterTable extends Migration
             $table->date('tglregis'); // tanggal registrasi
             $table->foreignId('pasien_id')->constrained('pasiens')->onDelete('cascade');
             $table->string('nama_pasien'); // bisa juga diambil dari relasi pasien
-            $table->decimal('berat_badan', 5, 2)->nullable();
-            $table->decimal('tinggi_badan', 5, 2)->nullable();
+            $table->string('berat_badan')->nullable();
+            $table->string('tinggi_badan')->nullable();
             $table->string('tekanan_darah')->nullable();
             $table->text('keluhan')->nullable();
             $table->text('diagnosa')->nullable();
+            $table->text('obat')->nullable();
             $table->timestamps();
         });
     }

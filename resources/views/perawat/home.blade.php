@@ -45,21 +45,11 @@
                                 <td class="py-2 px-4 border border-gray-700">{{ $reg->tinggi_badan }}</td>
                                 <td class="py-2 px-4 border border-gray-700">{{ $reg->tekanan_darah }}</td>
                                 <td class="py-2 px-4 border border-gray-700 space-x-2">
-                                    <form action="{{ route('pendaftaran.batal', $reg->id) }}" method="POST"
-                                        style="display:inline;">
-                                        @csrf
-                                        <button type="submit"
-                                            onclick="return confirm('Apakah Anda yakin ingin membatalkan registrasi ini?')"
-                                            class="inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-medium px-4 py-1.5 rounded-md shadow transition duration-200">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                            Batal Registrasi
-                                        </button>
-                                    </form>
-
+                                    <x-primary-button class="ms-3" type="submit">
+                                        <a href="{{ route('periksa.perawat', $reg->id) }}">
+                                            Periksa
+                                        </a>
+                                    </x-primary-button>
                                 </td>
                             </tr>
                         @empty

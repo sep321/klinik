@@ -41,10 +41,10 @@ class UserSeeder extends Seeder
 
         // Seed obat
         $obats = [
-       ['nama' => 'Paracetamol', 'kategori' => 'Obat Bebas', 'satuan' => 'tablet', 'stok' => 100],
-    ['nama' => 'Amoxicillin', 'kategori' => 'Antibiotik', 'satuan' => 'kapsul', 'stok' => 50],
-    ['nama' => 'Vitamin C', 'kategori' => 'Vitamin', 'satuan' => 'tablet', 'stok' => 200],
-];
+            ['nama' => 'Paracetamol', 'kategori' => 'Obat Bebas', 'satuan' => 'tablet'],
+            ['nama' => 'Amoxicillin', 'kategori' => 'Antibiotik', 'satuan' => 'kapsul'],
+            ['nama' => 'Vitamin C', 'kategori' => 'Vitamin', 'satuan' => 'tablet'],
+        ];
 
         foreach ($obats as $obat) {
             Obat::create($obat);

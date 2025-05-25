@@ -7,82 +7,84 @@ use App\Models\Pasien;
 use App\Models\User;
 use App\Models\Pemeriksaan;
 use App\Models\Register;
+use App\Models\Obat;
 
 class PemeriksaanController extends Controller
 {
     public function index()
     {
         $regis = Register::where('status', '!=', 0)->get(); // Ambil semua pasien
-        return view('periksa.home', compact('regis'));
+        return view('perawat.home', compact('regis'));
+    }
+    public function index_dokter()
+    {
+        $regis = Register::where('status', '!=', 0)->get(); // Ambil semua pasien
+        return view('dokter.home', compact('regis'));
     }
 
-    // Tampilkan form edit pasien
-    public function edit($id)
+    public function perawat($id)
     {
         $pasien = Register::findOrFail($id);
-        return view('periksa.edit', compact('pasien'));
+        return view('periksa.perawat', compact('pasien'));
     }
 
-    // // Update data pasien
-    // public function update(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'nama' => 'required|string|max:255',
-    //         'tanggal_lahir' => 'required|date',
-    //         'jenis_kelamin' => 'required|in:L,P',
-    //         'no_hp' => 'required|string|max:20',
-    //     ]);
-
-    //     $pasien = Pasien::findOrFail($id);
-    //     $pasien->update($request->all());
-
-    //     return redirect()->route('periksa.home')->with('success', 'Pasien berhasil diupdate.');
-    // }
-
-    // Hapus pasien
-    public function destroy($id)
+    public function dokter($id)
     {
-        $pasien = Pasien::findOrFail($id);
-        $pasien->delete();
-
-        return redirect()->route('periksa.home')->with('success', 'Pasien berhasil dihapus.');
+        $pasien = Register::findOrFail($id);
+        return view('periksa.dokter', compact('pasien'));
     }
 
-    public function registrasi(Request $request, $pasien_id)
+    public function apotek($id)
     {
-        $pasien = Pasien::findOrFail($pasien_id);
-
-        // Simpan data register, ambil nama dari pasien
-        Register::create([
-            'tglregis' => now(),
-            'pasien_id' => $pasien->id,
-            'nama_pasien' => $pasien->nama,
-        ]);
-
-        return redirect()->back()->with('success', 'Pasien berhasil diregistrasi.');
+        $pasien = Register::findOrFail($id);
+        $obats = Obat::all();
+        return view('periksa.apotek', compact('pasien', 'obats'));
     }
 
-    public function dokterForm()
-    {
-        $pasiens = Pasien::all(); // Ambil semua pasien
-        return view('pemeriksaan.dokter', compact('pasiens'));
-    }
-
-
-    public function dokterStore(Request $request)
+    // Update data pasien
+    public function save(Request $request, $id)
     {
         $request->validate([
-            'pasien_id' => 'required|exists:pasiens,id',
-            'keluhan' => 'required|string',
-            'diagnosa' => 'required|string',
+            'berat_badan'     => 'nullable|string|max:255',
+            'tinggi_badan'    => 'nullable|string|max:255',
+            'tekanan_darah'   => 'nullable|string|max:255',
         ]);
 
-        Pemeriksaan::create([
-            'pasien_id' => $request->pasien_id,
-            'keluhan' => $request->keluhan,
-            'diagnosa' => $request->diagnosa,
+        $pasien = Register::findOrFail($id);
+        $pasien->update($request->all());
+
+        return redirect()->route('perawat.home')->with('success', 'Simpan periksa berhasil !.');
+    }
+
+    // Update data pasien
+    public function save_dokter(Request $request, $id)
+    {
+        $request->validate([
+            'keluhan'         => 'nullable|string|max:255',
+            'diagnosa'        => 'nullable|string|max:255',
         ]);
 
-        return redirect()->route('pemeriksaan.dokter')->with('success', 'Pemeriksaan berhasil disimpan.');
+        $pasien = Register::findOrFail($id);
+        $pasien->update($request->all());
+
+        return redirect()->route('dokter.home')->with('success', 'Simpan periksa berhasil !.');
+    }
+
+    public function save_apotek(Request $request, $id)
+    {
+        $request->validate([
+            'obat_id'         => 'nullable|array',
+        ]);
+
+        $pasien = Register::findOrFail($id);
+        $obat_ids = $request->input('obat_id', []);
+        $obat_nama = Obat::whereIn('id', $obat_ids)->pluck('nama')->toArray();
+        $gabungan_obat = implode(', ', $obat_nama);
+
+        $pasien->update([
+            'obat'            => $gabungan_obat,
+        ]);
+
+        return redirect()->route('apotek.home')->with('success', 'Simpan Obat berhasil !.');
     }
 }

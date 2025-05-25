@@ -51,10 +51,13 @@
                class="inline-block bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition">
                 ← Kembali
             </a>
-            <button type="submit"
-                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md transition">
-                {{ $buttonText }}
-            </button>
+            <x-primary-button class="ms-3" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {{ $buttonText ?? 'Simpan' }}
+            </x-primary-button>
         </div>
     </form>
 </div>

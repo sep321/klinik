@@ -41,9 +41,27 @@
                 <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
+        <div style="text-align: left; margin-top: 8px;">
+            <label for="keluhan" class="block mb-1 font-semibold text-indigo-300">Keluhan</label>
+            <input type="text" name="keluhan" id="keluhan" value="{{ old('keluhan', $pasien->keluhan ?? '') }}"
+                required
+                class="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('keluhan')
+                <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+        <div style="text-align: left; margin-top: 8px;">
+            <label for="diagnosa" class="block mb-1 font-semibold text-indigo-300">Diagnosa</label>
+            <input type="text" name="diagnosa" id="diagnosa" value="{{ old('diagnosa', $pasien->diagnosa ?? '') }}"
+                required
+                class="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('diagnosa')
+                <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+            @enderror
+        </div>
 
         <div class="flex items-center justify-between pt-4">
-            <a href="{{ route('perawat.home') }}"
+            <a href="{{ route('dokter.home') }}"
                 class="inline-block bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition">
                 ← Kembali
             </a>

@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-bold text-white">Edit Pasien</h2>
+        <h2 class="text-3xl font-bold text-white">Edit Master Obat</h2>
 
     </div>
 
-    @include('pasien._form', [
-        'action' => route('pendaftaran.update', $pasien->id),
+    @include('apotek._form', [
+        'action' => route('apotek.update', $obats->id),
         'method' => 'PUT',
         'buttonText' => 'Update',
-        'pasien' => $pasien,
+        'obat' => $obats,
     ])
 @endsection

@@ -21,6 +21,7 @@ class Register extends Model
         'tekanan_darah',
         'keluhan',
         'diagnosa',
+        'obat',
     ];
 
     // Relasi ke pasien
