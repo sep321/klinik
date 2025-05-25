@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-bold text-white">Input Pemeriksaan Perawat</h2>
+        <h2 class="text-3xl font-bold text-white">Input Resep Pasien</h2>
 
     </div>
 

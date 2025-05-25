@@ -45,7 +45,7 @@
         @endphp
 
         <div class="mt-4">
-            <label class="block mb-1 font-semibold text-indigo-300">Pilih Beberapa Obat</label>
+            <label class="block mb-1 font-semibold text-indigo-300">Pilih Obat</label>
             <div
                 class="bg-gray-800 border border-gray-700 rounded-md p-3 text-white space-y-2 max-h-60 overflow-y-auto">
                 @foreach ($obats as $obat)
