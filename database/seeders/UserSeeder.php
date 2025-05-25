@@ -30,6 +30,7 @@ class UserSeeder extends Seeder
 
         // Seed pasien
         $pasiens = [
+            ['nama' => 'Asep Rohimat', 'tanggal_lahir' => '2005-05-01', 'jenis_kelamin' => 'L', 'no_hp' => '083334567890'],
             ['nama' => 'Ahmad Ramadhan', 'tanggal_lahir' => '1990-05-01', 'jenis_kelamin' => 'L', 'no_hp' => '081234567890'],
             ['nama' => 'Siti Nurhaliza', 'tanggal_lahir' => '1985-08-21', 'jenis_kelamin' => 'P', 'no_hp' => '082112345678'],
             ['nama' => 'Budi Santoso', 'tanggal_lahir' => '1979-12-15', 'jenis_kelamin' => 'L', 'no_hp' => '081298765432'],
